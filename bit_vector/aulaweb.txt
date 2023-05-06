@@ -1,0 +1,10 @@
+Implementazione del TDD Insieme con strutture dati già adottate (array dinamico non ordinato; vector; lista semplice)
+
+Implementazione del TDD Insieme con bit vector e con array ordinati
+
+Relazioni tra implementazione del TDD insieme mediante bit vector e operazioni bitwise ("bit a bit") del C++
+
+
+
+Nota: la funzione "shallowCopy" dovrebbe invece chiamarsi, per essere coerente con la sua semantica, "deepCopy"!
+Bit vector implementati come array (o vector) di lunghezza fissata n, in cui le celle contengono 0 o 1: se a è l'identificatore dell'array, a[i] = 0 se i non appartiene all'insieme rappresentato, a[i] = 1 se i appartiene all'insieme rappresentato. Dal punto di vista logico l'unione c di a e b si calcola inserendo in c[i] = a[i] or b[i] (cioé inseriso 1 in c[i] se almeno uno tra a[i] e b[i] vale 1. Dal punto di vista logico l'intersezione d di a e b si calcola inserendo in d[i] = a[i] and b[i]
