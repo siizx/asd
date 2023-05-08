@@ -41,6 +41,8 @@ int h2(Key s) // funzione di hash che somma il codice ascii di ogni carattere ne
    }
    val = val % tableDim;
    // implementare la funzione richiesta e modificare il return
+   if (val < 0)
+      val = val * (-1);
    return val;
 }
 
@@ -58,6 +60,8 @@ int h3(Key s) // funzione di hash diversa da h1 ed h2, che progettate e implemen
       c = c + sizeof(char);
    }
    val = (val * val * val) % tableDim;
+   if (val < 0)
+      val = val * (-1);
    return val;
 }
 
@@ -66,16 +70,15 @@ int h3(Key s) // funzione di hash diversa da h1 ed h2, che progettate e implemen
 /****************************************************************/
 int h(Key s)
 {
-   cout << "DEBUG: h1 restituisce: " << h1(s) << endl;
    return h1(s); // modificare questa chiamata per sperimentare l'utilizzo delle funzioni di hash h1, h2, h3, definite prima
 }
 
 /****************************************************************/
 /*              FUNZIONE NON IMPLEMENTATA                       */
 /* Ritorna OK se la chiave non esisteva già e se l'inserimento  */
-/* ha avuto successo.							    */
+/* ha avuto successo.							                      */
 /* Ritorna FAIL se la chiave esisteva già o se l'inserimento    */
-/* non ha avuto successo.
+/* non ha avuto successo.                                       */
 /****************************************************************/
 Error dict::insertElem(const Key k, const Value v, Dictionary &s)
 {
