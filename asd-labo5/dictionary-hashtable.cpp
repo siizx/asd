@@ -34,12 +34,10 @@ int h2(Key s) // funzione di hash che somma il codice ascii di ogni carattere ne
 {
    unsigned int c = 0;
    int val = 0;
-   cout << "DEBUG sizeof(s): " << sizeof(s) << endl;
 
    while (c < s.length())
    {
       val = val + ((int)s[c]);
-      cout << "DEBUG s[c] di h2: " << s[c] << " " << (int)s[c] << endl;
 
       c++;
    }
@@ -47,7 +45,6 @@ int h2(Key s) // funzione di hash che somma il codice ascii di ogni carattere ne
    // implementare la funzione richiesta e modificare il return
    if (val < 0)
       val = val * (-1);
-   cout << "DEBUG val: " << val << endl;
    return val;
 }
 
@@ -59,19 +56,16 @@ int h3(Key s) // funzione di hash diversa da h1 ed h2, che progettate e implemen
    // implementare la funzione richiesta e modificare il return
    unsigned int c = 0;
    int val = 0;
-   cout << "DEBUG sizeof(s): " << sizeof(s) << endl;
 
    while (c < s.length())
    {
       val = val + ((int)s[c]);
-      cout << "DEBUG s[c] di h2: " << s[c] << " " << (int)s[c] << endl;
 
       c++;
    }
    val = (val * val * val) % tableDim;
    if (val < 0)
       val = val * (-1);
-   cout << "DEBUG val: " << val << endl;
 
    return val;
 }
@@ -132,13 +126,18 @@ Value dict::search(const Key k, const Dictionary &s)
 {
    Bucket d_ptr2 = s[h(k)];
 
-   while (d_ptr2->next != nullptr && d_ptr2->elem.key != k)
+   if (d_ptr2->elem.key == k)
+      return d_ptr2->elem.value;
+
+   while (d_ptr2->next != nullptr)
    {
       d_ptr2 = d_ptr2->next;
       if (d_ptr2->elem.key == k)
          return d_ptr2->elem.value;
    }
 
+   if (d_ptr2->elem.key == k)
+      return d_ptr2->elem.value;
    return emptyValue;
 }
 
