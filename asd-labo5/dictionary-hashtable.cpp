@@ -32,17 +32,22 @@ int h1(Key s) // funzione di hash che considera unicamente il valore ascii del p
 /****************************************************************/
 int h2(Key s) // funzione di hash che somma il codice ascii di ogni carattere nella chiave e restituisce il resto della divisione di tale somma per tableDim
 {
-   char c = s[0];
+   unsigned int c = 0;
    int val = 0;
-   while (c)
+   cout << "DEBUG sizeof(s): " << sizeof(s) << endl;
+
+   while (c < s.length())
    {
-      val = val + (int)(c);
-      c = c + sizeof(char);
+      val = val + ((int)s[c]);
+      cout << "DEBUG s[c] di h2: " << s[c] << " " << (int)s[c] << endl;
+
+      c++;
    }
    val = val % tableDim;
    // implementare la funzione richiesta e modificare il return
    if (val < 0)
       val = val * (-1);
+   cout << "DEBUG val: " << val << endl;
    return val;
 }
 
@@ -52,16 +57,22 @@ int h2(Key s) // funzione di hash che somma il codice ascii di ogni carattere ne
 int h3(Key s) // funzione di hash diversa da h1 ed h2, che progettate e implementate voi seguendo qualche criterio che vi sembra ragionevole
 {
    // implementare la funzione richiesta e modificare il return
-   char c = s[0];
+   unsigned int c = 0;
    int val = 0;
-   while (c)
+   cout << "DEBUG sizeof(s): " << sizeof(s) << endl;
+
+   while (c < s.length())
    {
-      val = val + (int)(c);
-      c = c + sizeof(char);
+      val = val + ((int)s[c]);
+      cout << "DEBUG s[c] di h2: " << s[c] << " " << (int)s[c] << endl;
+
+      c++;
    }
    val = (val * val * val) % tableDim;
    if (val < 0)
       val = val * (-1);
+   cout << "DEBUG val: " << val << endl;
+
    return val;
 }
 
@@ -70,7 +81,7 @@ int h3(Key s) // funzione di hash diversa da h1 ed h2, che progettate e implemen
 /****************************************************************/
 int h(Key s)
 {
-   return h1(s); // modificare questa chiamata per sperimentare l'utilizzo delle funzioni di hash h1, h2, h3, definite prima
+   return h2(s); // modificare questa chiamata per sperimentare l'utilizzo delle funzioni di hash h1, h2, h3, definite prima
 }
 
 /****************************************************************/
