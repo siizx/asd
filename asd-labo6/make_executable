@@ -1,0 +1,7 @@
+# a build command to build myprogram executable from myprogram.o and mylib.lib
+
+clean:
+        $(RM) a.out
+all:dictionary-hashtable.cpp string-utility.cpp dictionary-main.cpp
+        g++ -std=c++11 -Wall -DUSE_HASH_TABLE dictionary-hashtable.cpp string-utility.cpp dictionary-main.cpp
+
