@@ -126,6 +126,9 @@ Value dict::search(const Key k, const Dictionary &s)
 {
    Bucket d_ptr2 = s[h(k)];
 
+   if (d_ptr2 == emptyBucket)
+      return emptyValue;
+
    if (d_ptr2->elem.key == k)
       return d_ptr2->elem.value;
 
