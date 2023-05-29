@@ -38,8 +38,34 @@ namespace dict
         Value value;
     } Elem;
 
-    struct bstNode;
-    typedef bstNode* Dictionary;
+#ifdef USE_HASH_TABLE
+    // Implementazione basata su tabella hash
+
+    struct cell;
+    typedef cell *Bucket;
+    const Bucket emptyBucket = nullptr;
+    typedef Bucket *Dictionary; // un Dictionary è un array di dimensione tableDim (che viene fissata in fase di inizializzazione), di puntatori a cell (che abbiamo chiamato "Bucket"); come già fatto in altre occasioni, la struttura di cell è definita nel file ausiliario per incapsulare il più possibile l'informazione
+
+#endif
+
+#ifdef USE_ORDERED_LIST
+    // Implementazione basata su lista ordinata
+
+    struct nodo;
+    typedef nodo *Dictionary;
+
+#endif
+
+#ifdef USE_ORDERED_VECTOR
+    // Implementazione basata su vettore ordinato
+
+    typedef vector<Elem> Dictionary;
+
+#endif
+
+#if !defined(USE_HASH_TABLE) && !defined(USE_ORDERED_LIST) && !defined(USE_ORDERED_VECTOR)
+#error "Must specify USE_HASH_TABLE or USE_ORDERED_LIST or USE_ORDERED_VECTOR"
+#endif
 
     Error insertElem(const Key, const Value, Dictionary &);
     Error deleteElem(const Key, Dictionary &);
