@@ -1,5 +1,5 @@
-// Compilare con g++ -Wall -std=c++11 *.cpp -o tree 
- 
+// Compilare con g++ -Wall -std=c++11 *.cpp -o tree
+
 #include "tree-chsib.h"
 
 const int maxreg = 10;
@@ -44,7 +44,8 @@ const string prompt = "\ndigita p per stampare il menu, q per terminare\n> ";
 // se c'è un errore su cin, resetta l'errore e lancia un'eccezione
 void check_cin(string err_msg)
 {
-   if (!cin) {
+   if (!cin)
+   {
       cin.clear();
       cin.ignore(255, '\n');
       throw runtime_error(err_msg);
@@ -53,7 +54,7 @@ void check_cin(string err_msg)
 
 // legge un registro da standard input
 int get_reg_id()
-{ 
+{
    int reg;
    const string err_msg = "indice di registro non valido";
    cin >> reg;
@@ -68,7 +69,7 @@ string get_label()
    string res;
    cin >> res;
    check_cin("etichetta non valida");
-   normalize(res);  // rimuovo whitespace e converto a minuscolo
+   normalize(res); // rimuovo whitespace e converto a minuscolo
    return res;
 }
 
@@ -90,13 +91,14 @@ int main(int argc, char *argv[])
    bool quiet = argc >= 2 && argv[1][0] == 'q';
 
    vector<tree::Tree> v(maxreg);
-   for (int i=0; i<maxreg; ++i)
+   for (int i = 0; i < maxreg; ++i)
       v[i] = tree::createEmpty();
 
    if (!quiet)
       cout << menu;
 
-   while (true) {
+   while (true)
+   {
       if (!quiet)
          cout << prompt;
       char ch;
@@ -107,51 +109,54 @@ int main(int argc, char *argv[])
       bool recursive;
       int reg;
       string nome_file, label, label2;
-      
-      try {  //parse arguments
-         switch(ch) {
-            case 'a': // file_name register
-               cin >> nome_file;
-               check_cin("nome file non valido");
-               reg = get_reg_id();
-               break;
-         
-            case 'b':
-            case 'h': // label label2 register
-               label = get_label();
-               label2 = get_label();
-               reg = get_reg_id();
-               break;
 
-            case 'd':
-            case 'e':
-            case 'f':
-            case 'i': // label register
-               label = get_label();
-               reg = get_reg_id();
-               break;
-            
-            case 'c':
-            case 'g': // label register mode
-               label = get_label();
-               reg = get_reg_id();
-               recursive = get_recursive();
-               break;
+      try
+      { // parse arguments
+         switch (ch)
+         {
+         case 'a': // file_name register
+            cin >> nome_file;
+            check_cin("nome file non valido");
+            reg = get_reg_id();
+            break;
 
-            case 'l':
-            case 'm': // register
-               reg = get_reg_id();
-               break;
-            
-            case 'n':
-            case 'p': // no operands
-               break;
-            
-            default:
-               throw runtime_error("comando sconosciuto");
+         case 'b':
+         case 'h': // label label2 register
+            label = get_label();
+            label2 = get_label();
+            reg = get_reg_id();
+            break;
+
+         case 'd':
+         case 'e':
+         case 'f':
+         case 'i': // label register
+            label = get_label();
+            reg = get_reg_id();
+            break;
+
+         case 'c':
+         case 'g': // label register mode
+            label = get_label();
+            reg = get_reg_id();
+            recursive = get_recursive();
+            break;
+
+         case 'l':
+         case 'm': // register
+            reg = get_reg_id();
+            break;
+
+         case 'n':
+         case 'p': // no operands
+            break;
+
+         default:
+            throw runtime_error("comando sconosciuto");
          } // switch
-      } // try
-      catch (runtime_error &e) {
+      }    // try
+      catch (runtime_error &e)
+      {
          cerr << "errore nella lettura dei parametri: " << e.what() << endl;
          continue;
       }
@@ -161,98 +166,98 @@ int main(int argc, char *argv[])
       string result;
       list::List results;
 
-      try { // run commands
-         switch(ch) {
-            case 'a':
-               v[reg] = readFromFile(nome_file);
-               break;
-            
-            case 'b':
-               cerr << "adding " << label2 << " child of " << label << endl;
-               error = tree::addElem(label, label2, v[reg]);
-               break;
-            
-            case 'c':
-               error = recursive ?
-                  tree::deleteElemR(label, v[reg]) :
-                  tree::deleteElemI(label, v[reg]);
-               break;
-            
-            case 'd':
-               result = tree::father(label, v[reg]);
-               break;
-            
-            case 'e':
-               results = tree::children(label, v[reg]);
-               break;
-            
-            case 'f':
-               result = to_string(tree::degree(label, v[reg]));
-               break;
-            
-            case 'g':
-               results = recursive ?
-                  tree::ancestorsR(label, v[reg]) :
-                  tree::ancestorsI(label, v[reg]);
-               break;
-            
-            case 'h':
-               result = tree::leastCommonAncestor(label, label2, v[reg]);
-               break;
-            
-            case 'i':
-               result = tree::member(label, v[reg]) ? "vero" : "falso";
-               break;
-            
-            case 'l':
-               result = to_string(numNodes(v[reg]));
-               break;
-            
-            case 'm':
-               printTree(v[reg]);
-               break;
+      try
+      { // run commands
+         switch (ch)
+         {
+         case 'a':
+            v[reg] = readFromFile(nome_file);
+            break;
 
-            case 'n':
-               for (int i=0; i < maxreg; i++) {
-                  cout << "Albero " << i << ":" << endl;
-                  printTree(v[i]);
-               }
-               break;
+         case 'b':
+            cerr << "adding " << label2 << " child of " << label << endl;
+            error = tree::addElem(label, label2, v[reg]);
+            break;
 
-            case 'p':
-               cout << menu;
-               break;            
-         }  // switch
-      } // try
-      catch (runtime_error &e) {
+         case 'c':
+            error = recursive ? tree::deleteElemR(label, v[reg]) : tree::deleteElemI(label, v[reg]);
+            break;
+
+         case 'd':
+            result = tree::father(label, v[reg]);
+            break;
+
+         case 'e':
+            results = tree::children(label, v[reg]);
+            break;
+
+         case 'f':
+            result = to_string(tree::degree(label, v[reg]));
+            break;
+
+         case 'g':
+            results = recursive ? tree::ancestorsR(label, v[reg]) : tree::ancestorsI(label, v[reg]);
+            break;
+
+         case 'h':
+            result = tree::leastCommonAncestor(label, label2, v[reg]);
+            break;
+
+         case 'i':
+            result = tree::member(label, v[reg]) ? "vero" : "falso";
+            break;
+
+         case 'l':
+            result = to_string(numNodes(v[reg]));
+            break;
+
+         case 'm':
+            printTree(v[reg]);
+            break;
+
+         case 'n':
+            for (int i = 0; i < maxreg; i++)
+            {
+               cout << "Albero " << i << ":" << endl;
+               printTree(v[i]);
+            }
+            break;
+
+         case 'p':
+            cout << menu;
+            break;
+         } // switch
+      }    // try
+      catch (runtime_error &e)
+      {
          cerr << "errore nell'esecuzione del comando: " << e.what() << endl;
       }
 
       high_resolution_clock::time_point t2 = high_resolution_clock::now();
-     
-      cout << "L'operazione ha richiesto " <<
-         duration_cast<microseconds>(t2 - t1).count() << " microsecondi"
-         << endl;
 
-      switch(ch) {  // eventuale output
-         case 'b':
-         case 'c':
-            cout << "operazione " << (error == tree::OK ? "riuscita" : "fallita")
-               << endl;
-            break;
-         
-         case 'd':
-         case 'f':
-         case 'h':
-         case 'i':
-         case 'l':
-            cout << result << endl;
-            break;
-         
-         case 'e':
-         case 'g':
-            printList(results);
-            break;
-      }  // switch
-   }  // while
+      cout << "L'operazione ha richiesto " << duration_cast<microseconds>(t2 - t1).count() << " microsecondi"
+           << endl;
+
+      switch (ch)
+      { // eventuale output
+      case 'b':
+      case 'c':
+         cout << "operazione " << (error == tree::OK ? "riuscita" : "fallita")
+              << endl;
+         break;
+
+      case 'd':
+      case 'f':
+      case 'h':
+      case 'i':
+      case 'l':
+         cout << result << endl;
+         break;
+
+      case 'e':
+      case 'g':
+         printList(results);
+         break;
+      } // switch
+   }    // while
 }
