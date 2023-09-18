@@ -1,0 +1,72 @@
+ls -alh:
+total 1.3M
+drwxrwxr-x 4 andrea andrea 4.0K Mar 24 14:21 .
+drwxrwxr-x 4 andrea andrea 4.0K Mar 24 13:52 ..
+-rw------- 1 andrea andrea 6.3K Mar 23 16:28 ASD-doubly-linked-list.cpp
+-rw-rw-r-- 1 andrea andrea 3.0K Mar 17  2020 ASD-doubly-linked-list.h
+-rw-rw-r-- 1 andrea andrea 5.3K Mar 22 22:39 ASD-main.cpp
+drwxrwxr-x 8 andrea andrea 4.0K Mar 23 16:33 .git
+-rw-rw-r-- 1 andrea andrea   17 Mar 17  2020 in1
+-rw-rw-r-- 1 andrea andrea  48K Mar 17  2020 in-10000-ordinati.txt
+-rw-rw-r-- 1 andrea andrea  48K Mar 17  2020 in-10000.txt
+-rw-rw-r-- 1 andrea andrea 3.9K Mar 17  2020 in-1000-ordinati.txt
+-rw-rw-r-- 1 andrea andrea 3.9K Mar 17  2020 in-1000.txt
+-rw-rw-r-- 1 andrea andrea  302 Mar 17  2020 in-100-ordinati.txt
+-rw-rw-r-- 1 andrea andrea  301 Mar 17  2020 in-100.txt
+-rw-rw-r-- 1 andrea andrea   39 Mar 17  2020 in-10.txt
+-rw-rw-r-- 1 andrea andrea   35 Mar 17  2020 in2
+-rw-rw-r-- 1 andrea andrea   59 Mar 17  2020 in3
+-rw-rw-r-- 1 andrea andrea 222K Mar 17  2020 in-40000-ordinati.txt
+-rw-rw-r-- 1 andrea andrea 222K Mar 17  2020 in-40000.txt
+-rw-rw-r-- 1 andrea andrea    9 Mar 24 14:21 log.txt
+-rwxr-xr-x 1 andrea andrea 6.3K Mar 23 14:28 run_test.py
+-rw-rw-r-- 1 andrea andrea 695K Mar 20 17:36 test_ASD-labo1.json
+drwxrwxr-x 2 andrea andrea 4.0K Mar 21 19:04 .vscode
+
+Compiling with "g++ -Wall ASD-doubly-linked-list.cpp ASD-main.cpp -o ASD-labo1":
+
+ls -alh:
+
+total 1.4M
+drwxrwxr-x 4 andrea andrea 4.0K Mar 24 14:22 .
+drwxrwxr-x 4 andrea andrea 4.0K Mar 24 13:52 ..
+-rw------- 1 andrea andrea 6.3K Mar 23 16:28 ASD-doubly-linked-list.cpp
+-rw-rw-r-- 1 andrea andrea 3.0K Mar 17  2020 ASD-doubly-linked-list.h
+-rwxrwxr-x 1 andrea andrea  43K Mar 24 14:22 ASD-labo1
+-rw-rw-r-- 1 andrea andrea 5.3K Mar 22 22:39 ASD-main.cpp
+drwxrwxr-x 8 andrea andrea 4.0K Mar 23 16:33 .git
+-rw-rw-r-- 1 andrea andrea   17 Mar 17  2020 in1
+-rw-rw-r-- 1 andrea andrea  48K Mar 17  2020 in-10000-ordinati.txt
+-rw-rw-r-- 1 andrea andrea  48K Mar 17  2020 in-10000.txt
+-rw-rw-r-- 1 andrea andrea 3.9K Mar 17  2020 in-1000-ordinati.txt
+-rw-rw-r-- 1 andrea andrea 3.9K Mar 17  2020 in-1000.txt
+-rw-rw-r-- 1 andrea andrea  302 Mar 17  2020 in-100-ordinati.txt
+-rw-rw-r-- 1 andrea andrea  301 Mar 17  2020 in-100.txt
+-rw-rw-r-- 1 andrea andrea   39 Mar 17  2020 in-10.txt
+-rw-rw-r-- 1 andrea andrea   35 Mar 17  2020 in2
+-rw-rw-r-- 1 andrea andrea   59 Mar 17  2020 in3
+-rw-rw-r-- 1 andrea andrea 222K Mar 17  2020 in-40000-ordinati.txt
+-rw-rw-r-- 1 andrea andrea 222K Mar 17  2020 in-40000.txt
+-rw-rw-r-- 1 andrea andrea 1.4K Mar 24 14:23 log.txt
+-rwxr-xr-x 1 andrea andrea 6.3K Mar 23 14:28 run_test.py
+-rw-rw-r-- 1 andrea andrea 695K Mar 20 17:36 test_ASD-labo1.json
+drwxrwxr-x 2 andrea andrea 4.0K Mar 21 19:04 .vscode
+
+Running "run_test.py":
+
+Traceback (most recent call last):
+  File "/home/andrea/MEGAsync/2022-2023-primo-anno-v2/asd/laboratorio-1/labo1_traccia/run_test.py", line 163, in <module>
+    error = test(case)
+            ^^^^^^^^^^
+  File "/home/andrea/MEGAsync/2022-2023-primo-anno-v2/asd/laboratorio-1/labo1_traccia/run_test.py", line 76, in test
+    result = subprocess.run(args.executable, input=input, capture_output=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/subprocess.py", line 1024, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/local/lib/python3.11/subprocess.py", line 1901, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'ASD-labo1'
+

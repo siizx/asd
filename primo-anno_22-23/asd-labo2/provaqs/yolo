@@ -1,0 +1,5 @@
+int pivot_index = inizio + rand() % (fine - inizio + 1);
+    int p = V[pivot_index];
+    int i = inizio + 1;
+
+    swap(V[pivot_index], V[inizio]);
